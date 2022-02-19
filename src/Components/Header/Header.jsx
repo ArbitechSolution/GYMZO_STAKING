@@ -1,10 +1,27 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import './Header.css'
 import { IoWalletSharp } from 'react-icons/io5';
+import { loadAccountAddress } from '../../apis/api'
+
 
 import { Navbar, Container, Nav } from 'react-bootstrap'
 
 export default function Header() {
+
+    const [accoutadd, setaccoutadd] = useState("Connect")
+    let MainAddress
+    const get = async () => {
+
+        MainAddress = await loadAccountAddress()
+        let acc = MainAddress.substring(0, 6) + "..." + MainAddress.substring(MainAddress.length - 6)
+        setaccoutadd(acc);
+
+
+    }
+
+    useEffect(() => {
+    get();
+})
     return (
         <div>
 
@@ -25,7 +42,7 @@ export default function Header() {
 
                                 <h6>12 <span>GYZMO</span> </h6>
 
-                                <button className='btn btn-info btn-sm btn_connect'>0x055604...5D2128D7D</button>
+                                <button className='btn btn-info btn-sm btn_connect'>{accoutadd}</button>
 
                             </div>
 
