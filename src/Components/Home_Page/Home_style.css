@@ -200,7 +200,7 @@
         border: 2px solid #3b3f3f;
         border-radius: 10px;
         width: 100% !important;
-        height: 30vh !important;
+        height: 32vh !important;
     }
     .btn_small_here{
         background-color: #282424b8;
@@ -270,8 +270,6 @@ display: block;
     border-bottom: 2px solid #06f9ec;
     padding-bottom: 10px;
 
-
-    
 }
 
 .hover_span{
@@ -469,7 +467,7 @@ display: block;
     }
     .second_card_1{
        
-        height: 40vh !important;
+        height: 42vh !important;
     }
     .inner_div_here h1{
         font-size: 25px !important;
