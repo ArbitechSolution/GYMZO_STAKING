@@ -25,7 +25,7 @@ export default function Header() {
 
                             <h6>12 <span>GYZMO</span> </h6>
 
-                            <button className='btn btn-info btn-sm btn_connect'>4541245...1456f475</button>
+                            <button className='btn btn-info btn-sm btn_connect'>0x055604c6f387a2e645D2128D7D</button>
                             
                             </div>
 

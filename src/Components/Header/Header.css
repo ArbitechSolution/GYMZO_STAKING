@@ -1,5 +1,6 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 .navHeaderbg{
     /* background: #f9f7f4 !important ; */
@@ -37,6 +38,7 @@ border: none;
 }
 .innerdiv_nav h6 span{
     color: #f9f7f4 ;
+    font-size: 22px;
 margin-left: rem !important;
 
 }
@@ -44,7 +46,9 @@ margin-left: rem !important;
 .innerdiv_nav h6{
     color: #06f9ec;
     margin-top: 0.3rem;
-font-size: 20px;
+font-size: 27px;
+font-family: 'Staatliches', cursive;
+
 margin-left: 0.5rem !important;
 
 }
@@ -52,7 +56,9 @@ margin-left: 0.5rem !important;
 .Link_nav{
     font-weight: 700;
 color: #3b3f3f !important;
-font-size: 20px;
+font-size: 25px;
+font-family: 'Staatliches', cursive;
+
 margin-left: 1rem;
 
 
@@ -64,7 +70,11 @@ color: #fff;
 }
 
 .Link_nav:hover{
-    border-bottom: 3px solid #06f9ec;
+    /* border-bottom: 3px solid #06f9ec; */
+    text-decoration: underline #06f9ec 3px;
+    
+
+   
 }
 
 @media (min-width:770px) and (max-width:1200px) {

@@ -7,6 +7,7 @@
       /* background-repeat: repeat; */
       background-repeat: no-repeat;
       background-size: cover;
+      background-position:center;
      /* padding: 500px; */
      height: 150vh;
      position: relative;
@@ -21,13 +22,14 @@
     color: #ffffff ;
     border-bottom: 4px solid #ffffff;
     position: relative;
-    font-weight: bolder;
+    /* font-weight: 200; */
     text-align: left;
     font-family: 'Staatliches', cursive;
+    font-size: 90px;
 }
 .inner_div_here{
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     padding-top: 80px;
 }
 
