@@ -9,16 +9,15 @@
       background-size: cover;
       background-position:center;
      /* padding: 500px; */
-     height: 150vh;
+     height: auto;
      position: relative;
+     padding-bottom: 5rem;
 
 }
 
 
 
 .inner_div_here h1{
-
-
     color: #ffffff ;
     border-bottom: 4px solid #ffffff;
     position: relative;
@@ -36,7 +35,8 @@
 
 .card_innerhere{
     height: auto;
-    background-color: #070707;
+    background-color: #282424b8;
+
     border: 1px solid #ffffff;
     border-radius: 15px;
 
@@ -64,9 +64,10 @@
 
 .first_col_1 h2{
     font-weight: bolder;
-    font-size:25px;
+    font-size:40px;
     font-family: 'Staatliches', cursive;
     color: #06f9ec;
+    line-height: 20px;
 
 }
 .first_col_1 h2 small{
@@ -79,17 +80,18 @@
 .first_col_1 small{
     color: #fff;
     font-family: 'Staatliches', cursive;
+    line-height: 0px;
+
 
 }
     
 .second_card_1{
-    background-color: #070707;
+    background-color: #282424b8;
     border: 2px solid #3b3f3f;
     border-radius: 10px;
     width: 100% !important;
-   
-
-
+    height: 28vh;
+ 
 }
 
 /* ----------------------------- */
@@ -107,9 +109,11 @@
 
 .inner_div_first_col h2{
     font-weight: bolder;
-    font-size:30px;
+    font-size:40px;
     color: #06f9ec;
     font-family: 'Staatliches', cursive;
+    line-height: 20px;
+
 
 }
 .inner_div_first_col h2 small{
@@ -122,6 +126,8 @@
     color: #fff;
     font-family: 'Staatliches', cursive;
     font-weight: 500;
+    line-height: 0px;
+
 
 }
 
@@ -157,15 +163,36 @@
     }
     .current_inner h2{
         font-size: 20px !important;
+    line-height: 20px;
+
 
     }
     .first_col_2 h2{
         font-size: 30px !important;
+    line-height: 20px;
+
 
 
     }
     .overlay{
         display: none;
+    }
+    .second_card_1{
+        background-color: #282424b8;
+        border: 2px solid #3b3f3f;
+        border-radius: 10px;
+        width: 100% !important;
+        height: 30vh;
+    }
+    .btn_small_here{
+        background-color: #282424b8;
+    
+        padding: 5px 10px 5px 9px !important;
+        border-radius: 10px;
+        border: 1px solid #3b3f3f;
+        font-family: 'Staatliches', cursive;
+    
+        color: #fff;
     }
         
 
@@ -190,15 +217,21 @@
 }
 
 .btn_small_here{
-    background-color: #000;
-    padding: 5px 8px 5px 8px;
+    background-color: #282424b8;
+
+    padding: 5px 12px 5px 12px;
     border-radius: 10px;
     border: 1px solid #3b3f3f;
+    font-family: 'Staatliches', cursive;
+
     color: #fff;
 }
 .btn_small_here:hover{
     background-color: #06f9ec;
-    border: 1px solid #fff;
+   
+  
+
+    
 
 }
 .inner_btn_all_here{
@@ -208,10 +241,31 @@
 .one2one_btn{
     padding-bottom: 10px;
 }
-.one2one_btn:hover{
-    border-bottom: 2px solid #06f9ec;
+.one2one_btn:hover .hover_span{
+   
+display: block;
+/* border-top: 1px solid #06f9ec; */
 
 }
+.linediv:hover{
+    border-bottom: 2px solid #06f9ec;
+
+    
+}
+
+.hover_span{
+    color: #06f9ec;
+    display: none;
+    width: 150%;
+    margin-top: 0.2rem;
+    font-family: 'Staatliches', cursive;
+    font-size: 16px;
+    margin-left: -0.7rem;    
+}
+
+
+
+
 
 /* ---------------------------------------------Current-Staking----------------------------------- */
 
@@ -220,6 +274,7 @@
     font-weight: 500;
     color: #fff;
     font-family: 'Staatliches', cursive;
+    font-size: 35px;
 
 }
 .current_stking{
@@ -227,8 +282,10 @@
 
 }
 
+
 .current_card_here{
-    background-color: #070707;
+    background-color: #282424b8;
+
     border: 2px solid #3b3f3f;
     border-radius: 10px;
     width: 100% !important;
@@ -242,6 +299,8 @@
     color: #fff;
     font-family: 'Staatliches', cursive;
     font-size: 18px;
+    line-height: 10px;
+
 
 }
 
@@ -253,6 +312,7 @@
     font-family: 'Staatliches', cursive;
     text-align: left;
     font-weight: 400;
+    line-height: 20px;
 
 
 }
@@ -272,7 +332,8 @@
 
 .btn_ce_stake{
     border-radius: 10px;
-    background-color: #000;
+    background-color: #282424b8;
+
     padding: 3px 20px 3px 20px;
     border-radius: 10px;
     border: 1px solid #3b3f3f;
@@ -287,7 +348,8 @@
 
 .card_innerhere22{
     height: auto;
-    background-color: #070707;
+    background-color: #282424b8;
+
     border: 1px solid #ffffff;
     border-radius: 15px;padding: 15px;
 
@@ -301,17 +363,22 @@
     color: #fff;
     font-family: 'Staatliches', cursive;
     font-size: 30px;
+    line-height: 20px;
 
 }
 
 
 .first_col_2 h2{
     font-weight: bolder;
-    font-size:45px;
+    font-size:50px;
     color: #06f9ec;
     font-family: 'Staatliches', cursive;
     text-align: left;
-    font-weight: 400;
+    font-weight: 600;
+    line-height: 40px;
+
+
+
 
 
 }
@@ -323,6 +390,8 @@
     font-family: 'Staatliches', cursive;
     font-weight: 500;
     font-size: 25px;
+    line-height: 10px;
+
     
    
 
@@ -341,10 +410,11 @@
 
 .price_icon{
     background-color: #cdf3f1;
-    padding: 5px 10px 2px 10px;
+    padding: 2px 10px 2px 10px;
     border-radius: 10px;
     color: rgb(62, 207, 62) !important;
     font-size: 20px;
+
     
 
 }
@@ -361,6 +431,17 @@
     .col222{
         margin-top: 1rem;
     }
+
+    .inner_div_here h1{
+        font-size: 40px !important;
+    }
+    .second_card_1{
+        background-color: #282424b8;
+        border: 2px solid #3b3f3f;
+        border-radius: 10px;
+        width: 100% !important;
+        height: 50vh !important;
+    }
 }
 
 
@@ -370,6 +451,13 @@
          height: auto !important;
         
     
+    }
+    .second_card_1{
+        background-color: #282424b8;
+        border: 2px solid #3b3f3f;
+        border-radius: 10px;
+        width: 100% !important;
+        height: 35vh;
     }
 
     .second_card_1{
@@ -382,7 +470,8 @@
         width: 100%;
     }
     .btn_small_here{
-        background-color: #000;
+        background-color: #282424b8;
+
         padding: 5px 12px 5px 12px;
         border-radius: 10px;
         border: 1px solid #3b3f3f;

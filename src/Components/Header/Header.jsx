@@ -1,6 +1,6 @@
 import React from 'react'
 import './Header.css'
-import {IoWallet} from 'react-icons/io5';
+import { IoWalletSharp } from 'react-icons/io5';
 
 import { Navbar, Container, Nav } from 'react-bootstrap'
 
@@ -20,13 +20,13 @@ export default function Header() {
                             <Nav.Link href="#" className='Link_nav'>GYZCON.COM</Nav.Link>
 
                             <div className="innerdiv_nav">
-                            <IoWallet className='icon_Wallets'/>
+                                <IoWalletSharp className='icon_Wallets' />
 
 
-                            <h6>12 <span>GYZMO</span> </h6>
+                                <h6>12 <span>GYZMO</span> </h6>
 
-                            <button className='btn btn-info btn-sm btn_connect'>0x055604c6f387a2e645D2128D7D</button>
-                            
+                                <button className='btn btn-info btn-sm btn_connect'>0x055604...5D2128D7D</button>
+
                             </div>
 
 

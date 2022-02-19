@@ -35,9 +35,8 @@ export default function Home_page() {
                                     <div className="card-body">
                                         <h3>MY GYZMO STAKING</h3>
                                         <div className="row mt-4">
-                                            <div className="col-lg-4 col-md-4">
+                                            <div className="col-lg-4 col-md-4 mt-4">
                                                 <div className="first_col_1">
-
                                                     <h6>TOTaL STAKING</h6>
                                                     <h2>21,000  <small>GYZMO</small></h2>
                                                     <small>~$840.00</small>
@@ -65,19 +64,35 @@ export default function Home_page() {
 
                                                                     <div className="inner_btn_all_here mt-2">
                                                                         <div className="one2one_btn">
-
+                                                                            <div className="linediv">
                                                                             <button className='btn btn-small btn_small_here '>30</button>
-                                                                        </div>
-                                                                        <div className="one2one_btn">
 
-                                                                            <button className='btn btn-small btn_small_here ms-1'>30</button>
-                                                                        </div>
-                                                                        <div className="one2one_btn">
-                                                                            <button className='btn btn-small btn_small_here ms-1'>30</button>
-                                                                        </div>
-                                                                        <div className="one2one_btn">
+                                                                            </div>
 
-                                                                            <button className='btn btn-small btn_small_here ms-1'>30</button>
+                                                                            <small className="hover_span" >100% APY</small>
+                                                                        </div>
+                                                                        <div className="one2one_btn">
+                                                                        <div className="linediv">
+
+                                                                            <button className='btn btn-small btn_small_here ms-1'>60</button>
+                                                                            </div>
+                                                                            <small className="hover_span" >115% APY</small>
+
+                                                                        </div>
+                                                                        <div className="one2one_btn">
+                                                                        <div className="linediv">
+                                                                            <button className='btn btn-small btn_small_here ms-1'>120</button>
+                                                                            </div>
+                                                                            <small className="hover_span" >130% APY</small>
+
+                                                                        </div>
+                                                                        <div className="one2one_btn">
+                                                                        <div className="linediv">
+
+                                                                            <button className='btn btn-small btn_small_here ms-1'>1Y</button>
+                                                                            </div>
+                                                                            <small className="hover_span" >160% APY</small>
+
                                                                         </div>
 
 
@@ -106,7 +121,7 @@ export default function Home_page() {
 
                                         </div>
 
-                                        <h5>CURRENT STAKING <span className='current_stking'>(3)</span></h5>
+                                        <h5 className='mt-3'>CURRENT STAKING <span className='current_stking'>(3)</span></h5>
                                         <div className="card current_card_here">
                                             <div className="card-body ">
 
@@ -303,7 +318,7 @@ export default function Home_page() {
                                     <div className="card card_innerhere22">
                                         <div className="first_col_2">
 
-                                            <h6>TOTAL STAKING</h6>
+                                            <h6>GLOBAL STAKING</h6>
                                             <h2>13,141,230  <small>GYZMO</small></h2>
                                             <small>~$525.649</small>
                                         </div>
@@ -344,7 +359,7 @@ export default function Home_page() {
                                                 <div className="current_inner">
 
                                                     <h6>GYZMO PRICE</h6>
-                                                    <h2>$0.04  <small className='price_icon'><AiOutlineRise className='icon_rise' />4.20%</small></h2>
+                                                    <h2>$0.04  <small className='price_icon ms-2'><AiOutlineRise className='icon_rise ' />4.20%</small></h2>
 
                                                 </div>
 
