@@ -90,8 +90,16 @@
     border: 2px solid #3b3f3f;
     border-radius: 10px;
     width: 100% !important;
-    height: 28vh;
+    height: 21vh !important;
  
+}
+
+@media (min-width:1501px) and (max-width:3000px) {
+    .second_card_1{
+       
+        height: 28vh !important;
+     
+    }
 }
 
 /* ----------------------------- */
@@ -182,7 +190,7 @@
         border: 2px solid #3b3f3f;
         border-radius: 10px;
         width: 100% !important;
-        height: 30vh;
+        height: 30vh !important;
     }
     .btn_small_here{
         background-color: #282424b8;
@@ -424,6 +432,7 @@ display: block;
 
 
 
+
 @media screen and (max-width:480px) {
     .second_card_1{
         margin-top: 1rem !important;
@@ -436,10 +445,7 @@ display: block;
         font-size: 40px !important;
     }
     .second_card_1{
-        background-color: #282424b8;
-        border: 2px solid #3b3f3f;
-        border-radius: 10px;
-        width: 100% !important;
+       
         height: 50vh !important;
     }
 }
@@ -453,12 +459,13 @@ display: block;
     
     }
     .second_card_1{
-        background-color: #282424b8;
-        border: 2px solid #3b3f3f;
-        border-radius: 10px;
-        width: 100% !important;
-        height: 35vh;
+       
+        height: 50vh !important;
     }
+    .inner_div_here h1{
+        font-size: 40px !important;
+    }
+   
 
     .second_card_1{
         margin-top: 0rem;
