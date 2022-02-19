@@ -22,6 +22,7 @@ export default function Home_page() {
 
                         <div className="inner_div_here">
                             <h1>GYZMO STAKING DASHBOARD</h1>
+                            <img src="GYZOBSERVER.png" alt="" width="100%" />
                         </div>
 
                     </div>
@@ -35,7 +36,7 @@ export default function Home_page() {
                                     <div className="card-body">
                                         <h3>MY GYZMO STAKING</h3>
                                         <div className="row mt-4">
-                                            <div className="col-lg-4 col-md-4 mt-4">
+                                            <div className="col-lg-4 col-md-5 mt-4">
                                                 <div className="first_col_1">
                                                     <h6>TOTaL STAKING</h6>
                                                     <h2>21,000  <small>GYZMO</small></h2>
@@ -43,7 +44,7 @@ export default function Home_page() {
                                                 </div>
 
                                             </div>
-                                            <div className="col-lg-8 col-md-8">
+                                            <div className="col-lg-8 col-md-7">
 
                                                 <div className="card second_card_1">
                                                     <div className="card-body">
