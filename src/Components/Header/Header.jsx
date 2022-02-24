@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import './Header.css'
 import { IoWalletSharp } from 'react-icons/io5';
-import { loadAccountAddress } from '../../apis/api'
+import { loadWeb3 } from '../../apis/api'
 
 
 import { Navbar, Container, Nav } from 'react-bootstrap'
@@ -12,7 +12,7 @@ export default function Header() {
     let MainAddress
     const get = async () => {
 
-        MainAddress = await loadAccountAddress()
+        MainAddress = await loadWeb3()
         let acc = MainAddress.substring(0, 6) + "..." + MainAddress.substring(MainAddress.length - 6)
         setaccoutadd(acc);
 

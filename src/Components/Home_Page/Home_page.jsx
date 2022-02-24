@@ -1,14 +1,85 @@
-import React from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import './Home_style.css'
 import { AiOutlineRise } from 'react-icons/ai'
+import { loadWeb3 } from '../../apis/api'
+import { ToastContainer, toast } from 'react-toastify';
+
+
+import { contract, abi, tokenAddress, tokeAbi } from '../../utilies/constant'
 
 export default function Home_page() {
 
-    const first30btn = () => {
+    let  [days, setdays] = useState('')
+    let [StakingG,setStakingG]=useState('')
+    //  [Input, setInput] = useState('')
 
+    let getdata = useRef(0);
+
+
+
+
+    const stake = async () => {
+        let acc = await loadWeb3();
+        
+        if (acc == "No Wallet") {
+            toast.error("Not Connected to Wallet")
+
+        }
+        else if (acc == "Wrong Network") {
+            toast.error("Wrong Newtwork please connect to test net")
+        }
+        else {
+            try {
+                const web3 = window.web3;
+                let tokenapp = new web3.eth.Contract(tokeAbi, tokenAddress)
+                let contractAcc=new web3.eth.Contract(abi,contract)
+                let enteredVal = getdata.current.value;
+                console.log("enteredVal", enteredVal);
+                console.log("Days here",  days)
+                await tokenapp.methods.approve(contract, web3.utils.toWei(enteredVal)).send({
+
+                    from: acc
+
+                })
+                toast.success("Transaction Successful.");
+                // console.log("Approve here",  enteredVal)
+                // days= days.toString();
+                await contractAcc.methods.farm(web3.utils.toWei(enteredVal),days).send({
+                    from:acc
+                })
+
+            } catch (error) {
+                console.log("Error while staking ",error);
+                toast.error("Transaction Failed")
+
+            }
+        }
 
 
     }
+
+    const GlobleStaking=async()=>{
+        const web3 = window.web3;
+        let contractAcc=new web3.eth.Contract(abi,contract)
+
+        let GStaking= await contractAcc.methods.GlobleStaking().call()
+
+        let newGStaking=web3.utils.fromWei(GStaking)
+        setStakingG(newGStaking)
+
+    }
+
+
+    useEffect(() => {
+
+        setInterval(() => {
+            GlobleStaking()
+        }, 1000);
+       
+
+     
+    }, [])
+    
 
 
 
@@ -61,36 +132,39 @@ export default function Home_page() {
                                                             <div className="col-lg-7 col-md-7" >
 
                                                                 <div className="secon_div_button">
-                                                                    <button className='btn btn-primary btn_stakhere '>Stake</button>
+
+                                                                    <input type="text" ref={getdata} className='form-control mb-2 inputfiled' />
+                                                                    <button className='btn btn-primary btn_stakhere ' onClick={() => stake()}>Stake</button>
+
 
                                                                     <div className="inner_btn_all_here mt-2">
                                                                         <div className="one2one_btn">
                                                                             <div className="linediv">
-                                                                            <button className='btn btn-small btn_small_here '>30</button>
+                                                                                <button className='btn btn-small btn_small_here ' onClick={() => setdays("30")}>30</button>
 
                                                                             </div>
 
                                                                             <small className="hover_span" >100% APY</small>
                                                                         </div>
                                                                         <div className="one2one_btn">
-                                                                        <div className="linediv">
+                                                                            <div className="linediv">
 
-                                                                            <button className='btn btn-small btn_small_here ms-1'>60</button>
+                                                                                <button className='btn btn-small btn_small_here ms-1' onClick={() => setdays("60")}>60</button>
                                                                             </div>
                                                                             <small className="hover_span" >115% APY</small>
 
                                                                         </div>
                                                                         <div className="one2one_btn">
-                                                                        <div className="linediv">
-                                                                            <button className='btn btn-small btn_small_here ms-1'>120</button>
+                                                                            <div className="linediv">
+                                                                                <button className='btn btn-small btn_small_here ms-1' onClick={() => setdays("120")}>120</button>
                                                                             </div>
                                                                             <small className="hover_span" >130% APY</small>
 
                                                                         </div>
                                                                         <div className="one2one_btn">
-                                                                        <div className="linediv">
+                                                                            <div className="linediv">
 
-                                                                            <button className='btn btn-small btn_small_here ms-1'>1Y</button>
+                                                                                <button className='btn btn-small btn_small_here ms-1' onClick={() => setdays("365")}>1Y</button>
                                                                             </div>
                                                                             <small className="hover_span" >160% APY</small>
 
@@ -320,7 +394,7 @@ export default function Home_page() {
                                         <div className="first_col_2">
 
                                             <h6>GLOBAL STAKING</h6>
-                                            <h2>13,141,230  <small>GYZMO</small></h2>
+                                            <h2>{StakingG}  <small>GYZMO</small></h2>
                                             <small>~$525.649</small>
                                         </div>
 

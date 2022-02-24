@@ -15,7 +15,20 @@
 
 }
 
+.inputfiled:focus{
+    background: transparent;
+    
+}
 
+.inputfiled{
+    background: transparent;
+    background-color: transparent;
+    color: #06f9ec !important;
+    font-family: 'Staatliches', cursive;
+
+
+
+}
 
 .inner_div_here h1{
     color: #ffffff ;
@@ -100,14 +113,14 @@
     border: 2px solid #3b3f3f;
     border-radius: 10px;
     width: 100% !important;
-    height: 22vh !important;
+    height: 29vh !important;
  
 }
 
 @media (min-width:1501px) and (max-width:3000px) {
     .second_card_1{
        
-        height: 28vh !important;
+        height: 40vh !important;
      
     }
 }
@@ -200,7 +213,7 @@
         border: 2px solid #3b3f3f;
         border-radius: 10px;
         width: 100% !important;
-        height: 32vh !important;
+        height: 40vh !important;
     }
     .btn_small_here{
         background-color: #282424b8;
@@ -453,10 +466,17 @@ display: block;
     }
     .second_card_1{
        
-        height: 50vh !important;
+        height: 60vh !important;
     }
 }
 
+
+@media (min-width:481px) and (max-width:800px) {
+    .second_card_1{
+       
+        height: 45vh !important;
+    }
+}
 
 @media screen and (max-width:800px) {
     
@@ -465,10 +485,7 @@ display: block;
         
     
     }
-    .second_card_1{
-       
-        height: 42vh !important;
-    }
+    
     .inner_div_here h1{
         font-size: 25px !important;
     }
