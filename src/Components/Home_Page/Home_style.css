@@ -242,8 +242,26 @@
     font-size: 18px;
 }
 
+input[type='number']::-webkit-inner-spin-button, 
+input[type='number']::-webkit-outer-spin-button { 
+    -webkit-appearance: none;    
+    appearance: none;
+    margin: 0;  
+}
+input[type='number'], 
+input[type='number']:hover,
+input[type='number']:focus {
+  -moz-appearance: textfield;
+}
+
 .btn_stakhere:hover{
+    background-color: #06f9ec !important;
+
+}
+.btn_stakhere:focus{
     background-color: #06f9ec;
+    outline: none;
+    border: none;
 
 }
 
@@ -259,10 +277,11 @@
 }
 .btn_small_here:hover{
     background-color: #06f9ec;
-   
-  
-
-    
+}
+.btn_small_here:focus{
+    background-color: #06f9ec;
+    outline: none;
+    border: none;
 
 }
 .inner_btn_all_here{
