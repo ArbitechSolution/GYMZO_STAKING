@@ -6,7 +6,7 @@ import { loadWeb3 } from '../../apis/api'
 
 import { Navbar, Container, Nav } from 'react-bootstrap'
 
-export default function Header() {
+export default function Header({balance}) {
 
     const [accoutadd, setaccoutadd] = useState("Connect")
     let MainAddress
@@ -40,7 +40,7 @@ export default function Header() {
                                 <IoWalletSharp className='icon_Wallets' />
 
 
-                                <h6>12 <span>GYZMO</span> </h6>
+                                <h6>{parseInt(balance)} <span>GYZMO</span> </h6>
 
                                 <button className='btn btn-info btn-sm btn_connect'>{accoutadd}</button>
 

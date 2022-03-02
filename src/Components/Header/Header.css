@@ -104,6 +104,27 @@ color: #fff;
 
 }
 
+@media screen and (max-width:350px) {
+    .innerdiv_nav h6{
+        color: #06f9ec;
+        margin-top: 0.5rem !important;
+    font-size: 15px !important;
+    margin-left: rem !important;
+    
+    } 
+    .btn_connect{
+        width: auto;
+        border-radius: 20px;
+        background-color: #f9f7f4 !important ;
+        padding: 0px 10px 0px 10px;
+    margin-left: 0.5rem !important;
+    
+    
+        
+    
+    }
+   
+}
 
 @media screen and (max-width:770px) {
     
@@ -140,6 +161,7 @@ color: #fff;
         .log_herder{
             width: 150px;
         }
+        
 
         
 }

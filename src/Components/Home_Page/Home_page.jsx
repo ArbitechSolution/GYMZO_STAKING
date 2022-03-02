@@ -8,25 +8,22 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { contract, abi, tokenAddress, tokeAbi } from '../../utilies/constant'
 
-export default function Home_page() {
+export default function Home_page({ balance, setbalance }) {
     let getdata = useRef();
-    console.log('Input data here', getdata)
+
     let [days, setdays] = useState('')
-    let [StakingG, setStakingG] = useState('')
+    let [StakingG, setStakingG] = useState(0)
     let [firstArray, setFirstArray] = useState([]);
     let [secondArray, setSecondArray] = useState([]);
     let [thirdArray, setThirdArray] = useState([]);
-    let [finalDays, setFinalDays] = useState([]);
-    let [hours, sethours] = useState([]);
-    let [minutes, setminutes] = useState([]);
-    let [info2, setinfo2] = useState('')
     let [stak, setstak] = useState(0)
-    let [totalStaking, settotalStaking] = useState();
-    let [APY, setAPY] = useState('100')
+    // let [balance,setbalance] = useState(0)
+    let [SumTotalStaking, setSumTotalStaking] = useState(0)
+    const [PendingRewards, setPendingRewards] = useState(0)
+    let [TimeCheck, setTimeCheck] = useState(0)
 
-    let [SumTotalStaking, setSumTotalStaking] = useState()
 
-    let [bacgroungColor, setBackgroundColor] = useState("#282424b8")
+
 
 
 
@@ -50,27 +47,18 @@ export default function Home_page() {
         else {
             try {
 
-
-
-
-
                 const web3 = window.web3;
                 let tokenapp = new web3.eth.Contract(tokeAbi, tokenAddress)
                 let contractAcc = new web3.eth.Contract(abi, contract)
                 let enteredVal = getdata.current.value;
-                console.log("enteredVal", enteredVal);
-                // console.log("entered Val", getdata);
-                // console.log("Days here", days)
-                if (enteredVal >= 100) {
+                if (enteredVal >= 1) {
                     if (days) {
 
                         await tokenapp.methods.approve(contract, web3.utils.toWei(enteredVal)).send({
                             from: acc
                         })
                         toast.success("Transaction Successful.");
-                        // console.log("Approve here",  enteredVal)
-                        // days= days.toString();
-                        await contractAcc.methods.farm(web3.utils.toWei(enteredVal), days).send({
+                        await contractAcc.methods.FARM(web3.utils.toWei(enteredVal), days).send({
                             from: acc
                         })
                     } else {
@@ -80,7 +68,7 @@ export default function Home_page() {
 
                 }
                 else {
-                    toast.error("Please Enter greater than 100")
+                    toast.error("Please Enter greater than 1")
 
                 }
 
@@ -88,7 +76,7 @@ export default function Home_page() {
 
             } catch (error) {
                 console.log("Error while staking ", error);
-                toast.error("Transaction Failed")
+
 
             }
         }
@@ -100,12 +88,54 @@ export default function Home_page() {
         const web3 = window.web3;
         let contractAcc = new web3.eth.Contract(abi, contract)
 
-        let GStaking = await contractAcc.methods.GlobleStaking().call()
+        let GStaking = await contractAcc.methods.globalStaking().call()
 
-        let newGStaking = web3.utils.fromWei(GStaking)
-        setStakingG(newGStaking)
+        // let newGStaking = web3.utils.fromWei(GStaking)
+        setStakingG(GStaking)
 
     }
+
+
+
+    const balanceOf = async () => {
+        let acc = await loadWeb3();
+        const web3 = window.web3;
+        let tokenBalane = new web3.eth.Contract(tokeAbi, tokenAddress)
+        let Balance_here = await tokenBalane.methods.balanceOf(acc).call();
+        tokenBalane = web3.utils.fromWei(Balance_here);
+        setbalance(tokenBalane)
+
+
+    }
+
+    const pendindRewards = async () => {
+        let acc = await loadWeb3();
+        const web3 = window.web3;
+
+        let currentRewards = new web3.eth.Contract(abi, contract);
+        let Reward_here = await currentRewards.methods.pendindRewards(acc).call();
+
+        Reward_here = web3.utils.fromWei(Reward_here);
+        // console.log("Panding rewards here" ,parseInt (Reward_here))
+        setPendingRewards(Reward_here);
+
+
+    }
+
+    const harvest = async (index) => {
+        let acc = await loadWeb3();
+
+        let web3 = window.web3;
+        let withdraw_stake = new web3.eth.Contract(abi, contract);
+        await withdraw_stake.methods.HARVEST(index).send({
+
+            from: acc
+        })
+
+
+    }
+
+
 
     const UserInformation = async () => {
         try {
@@ -114,44 +144,21 @@ export default function Home_page() {
             const web3 = window.web3;
             let contractAcc = new web3.eth.Contract(abi, contract)
             let info = await contractAcc.methods.UserInformation(acc).call()
-            const now = new Date();
-            let currentTime = Math.round(now.getTime() / 1000)
 
+
+            console.log("stakingvalue", info)
 
 
             let stakingvalue = info[0];
 
             let abc;
             let simplearray = [];
-            let mydays = [];
-            let myhours = [];
-            let myMonths = []
-            let loopLength = info[2].length;
-
-            for (let i = 0; i < loopLength; i++) {
-                let currentVariable = info[2][i];
-                let diffTime = currentTime - currentVariable;
-                let diffDays = diffTime / 86400;
-                let diffHours = diffTime - (diffDays * 86400) / 3600;
-                let diffMins = diffTime - (diffDays * 86400) - (diffHours * 3600) / 60;
-                diffTime = parseInt(diffTime)
-
-
-
-                // console.log("current variable,", diffHours);
-            }
             // eslint-disable-next-line no-lone-blocks
-
             {
-
                 stakingvalue.map((_items, index) => {
-                    abc = web3.utils.fromWei(info[0][index])
+                    abc = info[0][index]
                     simplearray.push(abc)
                     setstak(index + 1)
-
-
-
-
                 })
 
             }
@@ -161,15 +168,11 @@ export default function Home_page() {
             let totalS = simplearray.length;
             let sumarray = 0
             for (let i = 0; i < totalS; i++) {
-
-
                 sumarray += +simplearray[i];
-
 
             }
 
             setSumTotalStaking(sumarray)
-            // console.log('Sum here2', SumTotalStaking)
 
 
             // Time conveerter--------------------
@@ -180,28 +183,6 @@ export default function Home_page() {
                 TimeMunites.map((items, index) => {
                     let Seconds = info[2][index] / 3600
                     ArraySecond.push(Seconds)
-
-
-
-                })
-
-            }
-
-
-
-
-            // Time in to day---------
-
-
-            let timeDay = ArraySecond;
-            let arrayDay = [];
-            {
-                timeDay.map((items, index) => {
-
-                    let dayHere = timeDay[index] / 720
-                    // let abc=info[0][1];
-
-                    arrayDay.push(dayHere)
 
 
 
@@ -223,7 +204,7 @@ export default function Home_page() {
 
         } catch (error) {
             console.log('Error here', error)
-            toast.error("Transaction Failed")
+
 
         }
 
@@ -236,6 +217,8 @@ export default function Home_page() {
     useEffect(() => {
         setInterval(() => {
             GlobleStaking()
+            balanceOf()
+            pendindRewards()
 
             UserInformation()
         }, 1000);
@@ -282,7 +265,7 @@ export default function Home_page() {
                                                                 <div className="inner_div_first_col">
 
                                                                     <h6>AVAILABLE WALLET</h6>
-                                                                    <h2>12 <small>GYZMO</small></h2>
+                                                                    <h2>{parseInt(balance)} <small>GYZMO</small></h2>
                                                                     <small>~$840.00</small>
                                                                 </div>
 
@@ -353,30 +336,26 @@ export default function Home_page() {
                                         {
                                             firstArray.map((items, index) => {
 
-                                                let currentTime = Math.floor(new Date().getSeconds() / 1000.0);
-                                                currentTime = parseInt(currentTime)
-                                                let finalTime = currentTime - thirdArray[index]
-
-                                                let myDays = finalTime / 86400
-                                                myDays = parseInt(myDays);
-                                                let myHours = finalTime - (myDays * 86400);
-                                                myHours = myHours / 3600;
-
-                                                myHours = parseInt(myHours);
-                                                let myMins = finalTime - (myDays * 86400) - (myHours * 3600);
-                                                myMins = myMins / 60;
-                                                myMins = parseInt(myMins);
-                                                let mySecond = finalTime - (myDays * 86400) - (myHours * 3600) - (myMins * 60)
-                                                mySecond = parseInt(mySecond);
 
 
-                                            
-                                                let timeStamp = thirdArray[index];;
+
+
+
+
+                                                let timeStamp = thirdArray[index];
+                                                // console.log("timeStamp",timeStamp)
+
 
                                                 let contractDate = new Date(timeStamp * 1000);
                                                 let contractDay = contractDate.getDay();
                                                 let contractHours = contractDate.getHours();
                                                 let contractMinutes = contractDate.getMinutes();
+                                                // console.log("contractDate",contractDate)
+                                                // console.log("contractHours",contractHours)
+
+
+
+
 
 
                                                 let currentDay = new Date().getDay();
@@ -384,26 +363,209 @@ export default function Home_page() {
                                                 let curerntMinutes = new Date().getMinutes();
 
 
+
                                                 let day = currentDay - contractDay;
                                                 let hours = currentHours - contractHours;
                                                 let mint = curerntMinutes - contractMinutes;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                let Munits_here
+                                                let Hours_here
+                                                let Days_here
+                                                let Seconds
+                                                let TimeFinal
+
+                                                let Rewardes_here
                                                 let preApy = 0
                                                 if (secondArray[index] === '30') {
                                                     preApy = 100;
+                                                    // let dayInSecond = 2592000;
+                                                    let dayInSecond = 30;
+                                                   
+
+                                                    let timeStamp = thirdArray[index];
+                                                    var currentDateTime = new Date();
+                                                    let resultInSeconds = currentDateTime.getTime() / 1000;
+                                                    let Time_here = resultInSeconds - timeStamp
+                                                    TimeFinal = parseInt(dayInSecond - Time_here)
+                                                    if(TimeFinal<=0){
+                                                        Days_here=0;
+                                                        Hours_here=0;
+                                                        Munits_here=0;
+                                                        Seconds=0;
+
+
+                                                    }
+                                                    else{
+                                                        Days_here = parseInt(TimeFinal / 86400)
+                                                        TimeFinal = TimeFinal % (86400)
+                                                        Hours_here = parseInt(TimeFinal / 3600)
+                                                        TimeFinal %= 3600
+                                                        Munits_here = parseInt(TimeFinal / 60)
+                                                        TimeFinal %= 60
+                                                        Seconds = parseInt(TimeFinal)
+    
+
+                                                    }
+                                                    
+
+
+
+                                                
+                                                    Rewardes_here = 8.33333333333333333333 * firstArray[index] / 100
+
+
+
+
+
+                                                    //30 8.33333333333333333333
+                                                    //60 9.5833333333333333333333
+                                                    //120 10.833333333333333333333
+                                                    //360 13.33333333333333333333
+
+
+
 
                                                 } else if (secondArray[index] === '60') {
                                                     preApy = 115;
+                                                    // let dayInSecond = 5184000;
+                                                    let dayInSecond = 60;
+
+                                                    let timeStamp = thirdArray[index];
+                                                    var currentDateTime = new Date();
+                                                    let resultInSeconds = currentDateTime.getTime() / 1000;
+                                                    let Time_here = resultInSeconds - timeStamp
+                                                    TimeFinal = parseInt(dayInSecond - Time_here)
+
+
+                                                    if(TimeFinal<=0){
+                                                        Days_here=0;
+                                                        Hours_here=0;
+                                                        Munits_here=0;
+                                                        Seconds=0;
+
+
+                                                    }
+                                                    else{
+                                                        Days_here = parseInt(TimeFinal / 86400)
+                                                        TimeFinal = TimeFinal % (86400)
+                                                        Hours_here = parseInt(TimeFinal / 3600)
+                                                        TimeFinal %= 3600
+                                                        Munits_here = parseInt(TimeFinal / 60)
+                                                        TimeFinal %= 60
+                                                        Seconds = parseInt(TimeFinal)
+    
+
+                                                    }
+                                                    
+
+                                                    Rewardes_here = 9.5833333333333333333333 * firstArray[index] / 100
+
+
+
 
 
                                                 } else if (secondArray[index] === '120') {
                                                     preApy = 130;
+                                                    // let dayInSecond = 10368000;
+                                                    let dayInSecond = 120;
+
+                                                    let timeStamp = thirdArray[index];
+                                                    var currentDateTime = new Date();
+                                                    let resultInSeconds = currentDateTime.getTime() / 1000;
+                                                    let Time_here = resultInSeconds - timeStamp
+                                                    TimeFinal = parseInt(dayInSecond - Time_here)
+
+
+                                                    if(TimeFinal<=0){
+                                                        Days_here=0;
+                                                        Hours_here=0;
+                                                        Munits_here=0;
+                                                        Seconds=0;
+
+
+                                                    }
+                                                    else{
+                                                        Days_here = parseInt(TimeFinal / 86400)
+                                                        TimeFinal = TimeFinal % (86400)
+                                                        Hours_here = parseInt(TimeFinal / 3600)
+                                                        TimeFinal %= 3600
+                                                        Munits_here = parseInt(TimeFinal / 60)
+                                                        TimeFinal %= 60
+                                                        Seconds = parseInt(TimeFinal)
+    
+
+                                                    }
+                                                    
+
+                                                    Rewardes_here = 10.833333333333333333333 * firstArray[index] / 100
+
+
 
 
                                                 } else if (secondArray[index] === '360') {
                                                     preApy = 160;
+                                                    // let dayInSecond = 31104000;
+                                                    let dayInSecond = 360;
+
+                                                    
+                                                    let timeStamp = thirdArray[index];
+                                                    var currentDateTime = new Date();
+                                                    let resultInSeconds = currentDateTime.getTime() / 1000;
+                                                    let Time_here = resultInSeconds - timeStamp
+                                                    TimeFinal = parseInt(dayInSecond - Time_here)
+
+                                                    if(TimeFinal<=0){
+                                                        Days_here=0;
+                                                        Hours_here=0;
+                                                        Munits_here=0;
+                                                        Seconds=0;
+
+
+                                                    }
+                                                    else{
+                                                        Days_here = parseInt(TimeFinal / 86400)
+                                                        TimeFinal = TimeFinal % (86400)
+                                                        Hours_here = parseInt(TimeFinal / 3600)
+                                                        TimeFinal %= 3600
+                                                        Munits_here = parseInt(TimeFinal / 60)
+                                                        TimeFinal %= 60
+                                                        Seconds = parseInt(TimeFinal)
+    
+
+                                                    }
+                                                    
+                                                    Rewardes_here = 13.33333333333333333333 * firstArray[index] / 100
+
                                                 }
+
+
+                                                const Withdraw_reward = async (index) => {
+                                                    if (TimeFinal <= 0) {
+                                                        await harvest(index)
+
+                                                    }
+                                                    else {
+                                                        toast.error(<h6>Remaining Time is {Days_here} <small>d </small>{Hours_here} <small>h</small> {Munits_here} <small>m</small>  {Seconds} <small>s</small></h6>)
+
+
+                                                    }
+
+                                                }
+
 
 
 
@@ -447,11 +609,11 @@ export default function Home_page() {
                                                                         <div className='current_body'>
                                                                             <div className="current_inner">
                                                                                 <h6>PENDING REWARDS</h6>
-                                                                                <h2>13  <small>GYZMO</small>  <small>~$0.52</small> </h2>
+                                                                                <h2>{parseInt(Rewardes_here)}  <small>GYZMO</small>  <small>~$0.52</small> </h2>
                                                                             </div>
                                                                             <div className="current_inner">
-                                                                                <h6>CLAIM IN {day} <small>d </small>{hours} <small>h</small> {mint} <small>m</small></h6>
-                                                                                <button className='btn btn_ce_stake'>Cancel stake</button>
+                                                                                <h6>CLAIM IN {Days_here} <small>d </small>{Hours_here} <small>h</small> {Munits_here} <small>m</small></h6>
+                                                                                <button className='btn btn_ce_stake' onClick={() => Withdraw_reward([index])} >Withdraw </button>
                                                                             </div>
 
                                                                         </div>
@@ -544,8 +706,8 @@ export default function Home_page() {
 
                                     </div>
 
-                                    <div className="row">
-                                        <div className="col-lg-7 col-md-7">
+                                    <div className="row ">
+                                        <div className="col-lg-7 col-md-7 mt-1">
 
                                             <div className='current_body'>
                                                 <div className="current_inner">
@@ -555,10 +717,10 @@ export default function Home_page() {
 
                                                 </div>
 
-                                                <div className="current_inner">
+                                                {/* <div className="current_inner">
                                                     <h6>DAILY REWARDS</h6>
                                                     <h2>14,932 GYZMO</h2>
-                                                </div>
+                                                </div>*/}
 
 
                                             </div>
@@ -568,7 +730,7 @@ export default function Home_page() {
                                         </div>
                                         <div className="col-lg-5 col-md-5" >
                                             <div className='current_body'>
-                                                <div className="current_inner">
+                                                <div className="Supply">
                                                     <h6>CIRCULATING SUPPLY</h6>
                                                     <h2>14,932,000 GYZMO </h2>
                                                 </div>

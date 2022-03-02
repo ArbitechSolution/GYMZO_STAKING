@@ -126,7 +126,29 @@
 }
 
 /* ----------------------------- */
+.Supply h6{
+    text-align: left;
+    font-weight: 500;
+    color: #fff;
+    font-family: 'Staatliches', cursive;
+    font-size: 25px;
+    line-height: 10px;
 
+
+}
+
+
+.Supply h2{
+    font-weight: bolder;
+    font-size:25px;
+    color: #06f9ec;
+    font-family: 'Staatliches', cursive;
+    text-align: left;
+    font-weight: 400;
+    line-height: 30px;
+
+
+}
 .inner_div_first_col{
     text-align: left;
 }
@@ -140,7 +162,7 @@
 
 .inner_div_first_col h2{
     font-weight: bolder;
-    font-size:40px;
+    font-size:30px;
     color: #06f9ec;
     font-family: 'Staatliches', cursive;
     line-height: 20px;
@@ -161,6 +183,8 @@
 
 
 }
+
+
 
 @media (min-width:801px) and (max-width:1200px) {
 
@@ -392,7 +416,8 @@ display: block;
     color: #fff;
 }
 .btn_ce_stake:hover{
-    color: #fff;
+    color: #282424b8;
+    background-color: #06f9ec;
     
 }
 /* ---------------------------------------Second Col here------------------------------ */
@@ -550,7 +575,7 @@ display: block;
 
 .current_inner h2{
     font-weight: bolder;
-    font-size:25px;
+    font-size:18px;
     color: #06f9ec;
     font-family: 'Staatliches', cursive;
     text-align: left;
