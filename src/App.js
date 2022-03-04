@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { contract, abi, tokenAddress, tokeAbi } from '../src/utilies/constant'
 import { loadWeb3 } from './apis/api'
+import Spinner from './Components/Loading_Spinner/Spinner';
 
 
 
@@ -15,6 +16,8 @@ import { loadWeb3 } from './apis/api'
 function App() {
 
   let [balance, setbalance] = useState(0)
+  let [isSpinner, setIsSpinner] = useState(false)
+
 
 
   const balanceOf = async () => {
@@ -23,11 +26,11 @@ function App() {
     let tokenBalane = new web3.eth.Contract(tokeAbi, tokenAddress)
     let Balance_here = await tokenBalane.methods.balanceOf(acc).call();
     tokenBalane = web3.utils.fromWei(Balance_here);
-    let tokenBalance_here=tokenBalane.toLocaleString('fullwide', { useGrouping: false })
+    tokenBalane=parseInt(tokenBalane);
+    // let tokenBalance_here= tokenBalane.toLocaleString('fullwide', { useGrouping: false })
 
-    console.log("Chek Obnee 1", tokenBalane.toLocaleString()); // "1,000,000,000,000,000,000,000"
-    console.log("Chek",tokenBalane.toLocaleString('fullwide', { useGrouping: false }));
-    setbalance(tokenBalance_here)
+   
+    setbalance(tokenBalane)
 
 
   }
@@ -42,11 +45,17 @@ function App() {
   }, [])
 
   return (
+
     <div className="App">
+    <Header balance={balance} />
+
+    {
+      isSpinner ? <Spinner/> : <></>
+
+    }
       <ToastContainer />
 
-      <Header balance={balance} />
-      <Home_page balance={balance} setbalance={setbalance} />
+      <Home_page balance={balance} setbalance={setbalance} setIsSpinner={setIsSpinner} />
 
 
 
